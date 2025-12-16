@@ -28,14 +28,14 @@ public class CustomerDetailsService {
 
     public CustomerResponse processEncryptedRequest(String encryptedData) {
         try {
-            String decryptedJson = rsaService.decryptBase64(encryptedData);
+            String decryptedJson = rsaService.decrypt(encryptedData);
 
             var node = mapper.readTree(decryptedJson);
             String cardNumber = node.get("cardNumber").asText();
 
             validateCardNumber(cardNumber);
 
-            String encryptedCardForLookup = aesService.encryptToBase64(cardNumber);
+            String encryptedCardForLookup = aesService.encrypt(cardNumber);
 
             Optional<CustomerDetails> existing = repo.findByEncryptedCardNumber(encryptedCardForLookup);
 

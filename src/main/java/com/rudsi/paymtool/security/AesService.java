@@ -42,14 +42,14 @@ public class AesService {
         return INSTANCE;
     }
 
-    public String encryptToBase64(String plain) throws Exception {
+    public String encrypt(String plain) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.ENCRYPT_MODE, key);
         byte[] cipherBytes = cipher.doFinal(plain.getBytes(StandardCharsets.UTF_8));
         return Base64.getEncoder().encodeToString(cipherBytes);
     }
 
-    public String decryptBase64(String base64Cipher) throws Exception {
+    public String decrypt(String base64Cipher) throws Exception {
         Cipher cipher = Cipher.getInstance("AES/ECB/PKCS5Padding");
         cipher.init(Cipher.DECRYPT_MODE, key);
         byte[] decoded = Base64.getDecoder().decode(base64Cipher);

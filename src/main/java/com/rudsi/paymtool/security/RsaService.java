@@ -25,7 +25,7 @@ public class RsaService {
         this.privateKey = kf.generatePrivate(keySpec);
     }
 
-    public String decryptBase64(String base64Cipher) throws Exception {
+    public String decrypt(String base64Cipher) throws Exception {
         byte[] cipherBytes = Base64.getDecoder().decode(base64Cipher);
         Cipher cipher = Cipher.getInstance("RSA/ECB/OAEPWithSHA-256AndMGF1Padding");
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
