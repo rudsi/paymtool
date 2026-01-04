@@ -1,5 +1,5 @@
 package com.rudsi.paymtool.dto;
 
-public record EncryptedRequest(
+public record EncryptedCustomerDetailsRequest(
                 String encryptedData) {
 }
